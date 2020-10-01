@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Programming Test - Divami </h2>
+
+<p><b>Q) Write a program to print the word in the correct order.</b> </p>
+<div><b><u>Description: </u></b> The input will be an array of strings like : ["P>E", "E>R", "R>U"]. Each string will always have 3 characters in length, the middle character will always be '>'. For P>E, it means that P should come ahead of E in the resulting string. Likewise E>R means E should come before R in the resultant string. The resultant string For ["P>E", "E>R", "R>U"] is : PERU
+
+The resultant string for : ["I>N", "A>I", "P>A", "S>P"] is SPAIN
+
+There will be no repetition of characters in the resultant string</div>
+<h4>RESULT :</h4>
+<blockquote>
+    <strong>
+          <p id="demo"></p>
+    </strong>
+</blockquote>
+<script>
+//var inputString = ["I>N","A>I","P>A","S>P"]; //Input1
+var inputString = ["P>E","E>R","R>U"]; //Input2
+
+//An array of first element of given input array string
+var first = inputString.map(item => item.substr(0,1));
+
+//An array of last element of given input array string
+var last = inputString.map(item => item.substr(2,1));
+var tosearch="";
+
+//To Find first character of the Output string
+for(var i=0;i<first.length;i++){
+    var pos=last.indexOf(first[i]);
+    if(pos==-1)
+    {
+         //Next character to be searched
+        tosearch=inputString[i].substr(2,1);
+        break;
+    }
+}
+var temp=[];
+//Creating a sorted array
+temp.push(inputString[i]);
+
+for(var i=0;i<(inputString.length)-1;i++){
+    var pos=first.indexOf(tosearch);
+    if(pos!=-1)
+    {
+        temp.push(inputString[pos]);
+         //Next character to be searched
+        tosearch=inputString[pos].substr(2,1);
+    }
+}
+var result="";
+//Compiling the result 
+for(var i=0;i<temp.length;i++){
+    if(i==0){
+        result+=temp[i].substr(0,1);
+        result+=temp[i].substr(2,1);
+    }else{
+        result+=temp[i].substr(2,1);
+    }
+}
+//Displaying result
+document.getElementById("demo").innerHTML=result;
+</script>
+
+</body>
+</html>
